@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        {{>header}}
+         
+
+<form id="login-submit" action="/users/login" method="post">
+    <div class="container">
+      <h3>Login</h3>
+      <label for="usernamename"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+
+      <button type="submit">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+</form>
+  
+
+<form id="signup-submit" action="/users/signup" method="post">
+    <div class="container">
+    <h3>New to Best Sella Tella? Sign up here</h3>
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" required>
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <button type="submit">Create Account</button>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
+  </div>
+  <div class="container" style="background-color:#f1f1f1">
+  </div>
+</form> 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+        
+        <script src="js/index.js" async defer></script>
+        <script src="/js/app.js" async defer></script>
+    </body>
+</html>
+

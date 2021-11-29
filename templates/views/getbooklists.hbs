@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        {{>header}}
+        <h3>Search Booklists</h3>
+        <form id="booklist-form">
+        <label for="select-box">Choose a booklist</label><br>
+        <select id="select-box">
+            <option selected>No option selected</option>
+            {{#each booklist as |listName|}}
+                <option>{{listName}}</option>
+            {{/each}}
+        </select>
+        <button type="submit">Search</button>
+        </form>
+
+        
+        <script src="js/getbooklists.js" async defer></script>
+        <script src="/js/app.js" async defer></script>
+    </body>
+</html>

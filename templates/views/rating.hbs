@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Rating</title>
+</head>
+<body>
+    {{>header}}
+    <h3>Book Review for {{bookTitle}}</h3>
+    <p>Ranked #{{bookID}} on the NY Times Current Bestsellers</p>
+    <form id="review-form">
+        <div class="star-widget">
+            <input type="radio" name="rate" id="rate-5">
+            <label for="rate-5" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-4">
+            <label for="rate-4" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-3">
+            <label for="rate-3" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-2">
+            <label for="rate-2" class="fas fa-star"></label>
+            <input type="radio" name="rate" id="rate-1">
+            <label for="rate-1" class="fas fa-star"></label>
+            <header>
+            </header>
+        <div class="textarea">
+                <textarea cols="30" id="review-input" placeholder="Write your book review here..."></textarea>
+        </div>
+        <div class="btn">
+                <button type="submit" class="review-button">Post</button>
+                </div>
+        </div>
+    </form>
+    <script src="/js/rating.js"></script>
+    <script src="/js/app.js" async defer></script>
+</body>
+</html>
