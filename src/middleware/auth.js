@@ -6,14 +6,13 @@ const { jwtsecret } = require('../config.js');
 const auth = async (req, res, next) => {
     
     try {
-        const cookies = req.cookies.Authorization.replace('Bearer ', '')
-      
-        const decoded = jwt.verify(token, 'thisistoken')
-
-        console.log(decoded)
-        const user = await User.findOne({_id: decoded._id.toString(), 'tokens.token':token})
-
+        const token = req.cookies.Authorization.replace('Bearer ', '')
+        let decoded = jwt.verify(token, 'thisistoken')
+        decoded = Object.values(decoded);
+        const decodedValue = decoded[0];
+        const user = await User.findOne({_id: decodedValue, 'tokens.token':token})
         if (!user) {
+            console.log('ERROR')
             throw new Error()
         }
         req.user = user

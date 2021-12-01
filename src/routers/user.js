@@ -20,7 +20,7 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
         await user.save()
         res.cookie('Authorization', `Bearer ${token}`,{
             httpOnly: true,
-            maxAge: 90000,
+            maxAge: 9000000,
             sameSite: true
         })
         res.status(201).render( 'home',{
@@ -42,7 +42,7 @@ router.post('/users/login', urlencodedParser, async (req, res) =>{
 
         res.cookie('Authorization', `Bearer ${token}`,{
             httpOnly: true,
-            maxAge: 90000,
+            maxAge: 9000000,
             sameSite: true
         })
         res.status(201).render( 'home',{

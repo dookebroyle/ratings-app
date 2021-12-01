@@ -17,8 +17,8 @@ const ratingSchema = new mongoose.Schema( {
         required: true,
         ref: 'User'
     },
-    bookID: {
-        type: Number,
+    reviewText: {
+        type: String,
         required: true,
     }
 }, {

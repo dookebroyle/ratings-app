@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const app = express()
+var bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 const hbs = require('hbs')
@@ -27,6 +28,7 @@ hbs.registerPartials(partialsPath)
 //set up static route for express
 app.use(express.static(publicDirectoryPath))
 app.use(express.json())
+app.use(bodyParser.urlencoded({limit: '5000mb', extended: true, parameterLimit: 100000000000}))
 app.use(cookieParser())
 app.use(userRouter)
 app.use(ratingRouter)
@@ -46,6 +48,24 @@ app.get('/home', (req, res) =>{
 
     })
 })
+
+app.get('/error', (req, res) =>{
+    res.render('error', {
+        title: 'error',
+    })
+})
+
+app.get('/success', (req, res) =>{
+    res.render('success', {
+        title: 'success',
+    })
+})
+
+
+/* THIS PORTION IS NOT GETTING THE QUERY STRING */
+
+
+/* ____________________________________________________*/
 
 //write a rating/review for the selected book
 app.get('/rating', (req, res) => {

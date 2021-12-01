@@ -5,36 +5,27 @@ const post = document.querySelector(".review-button");
 const widget = document.querySelector(".star-widget");
 const reviewForm = document.querySelector('#review-form')
 const reviewText = document.querySelector('#review-input')
+let bookTitle = document.querySelector('#book-title-header').textContent
 
-reviewForm.addEventListener('submit', (e) => {
-    e.preventDefault()
-    const input = reviewText.value.trim().replace(/\s/g, '-')
-    ratingStars.forEach( (star) => {
-        if (star.checked) {
-            
-            //this needs access to user ID
-
-            fetch(`http://localhost:3000/ratings?stars=${star.id}&reviewtext=${input}&`).then((response) => {
-                if (response.error){
-                    console.log(response.error)
-                } else {
-                    console.log(response)
-                }
-                })
-                //window.location.replace(`http://localhost:3000/fetchbooks?booklistName=${listName}`);
-
-
-
-
-
-
-
-        } else {
-            
-        }
-    })
+// reviewForm.addEventListener('submit', (e) => {
     
-})
+//     const input = reviewText.value.trim().replace(/\s/g, '-')
+//     console.log(input)
+//     const bookName = bookTitle.replace('Book Review for Book Title:', '')
+   
+    
+//     ratingStars.forEach( (star) => {
+//         if (star.checked) {
+//             fetch(`http://localhost:3000/rating?stars=${star.id}&reviewtext=${input}&booktitle=${bookName}`).then((response) => {
+//                 if (response.error){
+//                     console.log(response.error)
+//                 } else {
+//                     console.log(response)
+//                 }
+//                 })
+//         } 
+//     })
+// })
 
 
 btn.onclick = ()=>{
