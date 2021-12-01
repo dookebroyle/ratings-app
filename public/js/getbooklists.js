@@ -17,6 +17,7 @@ submit.addEventListener('submit', (e) => {
             console.log(response)
         }
         })
+        window.location.replace(`http://localhost:3000/fetchbooks?booklistName=${listName}`)
         selectedList = "";
         listName = "";
     })

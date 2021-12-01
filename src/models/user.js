@@ -3,6 +3,7 @@ const validator = require('validator')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const Rating = require ('./rating')
+const {JWT_SECRET} = require('../config')
 
 const userSchema = new mongoose.Schema({
     username:{
@@ -54,11 +55,11 @@ userSchema.methods.toJSON = function () {
 userSchema.statics.findByCredentials = async (username, password) => {
     const user = await User.findOne({username})
     if(!user){
-        throw new Error('Unable to log in')
+        throw new Error('Username not found')
     }
     const isMatch = await bcrypt.compare(password, user.password)
     if (!isMatch) {
-        throw new Error('Unable to log in')
+        throw new Error('Authentication error')
     }
     return user;
 }

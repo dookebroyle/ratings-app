@@ -1,10 +1,11 @@
 const express = require('express')
 const User = require('../models/user')
+const Rating = require('../models/rating')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 
 //create new rating with logged in user as owner
-router.post('/ratings', auth, async (req, res) =>{
+router.post('/ratings', async (req, res) =>{
     const rating = new Rating({
         ...req.body,
         owner: req.user._id
@@ -20,7 +21,7 @@ router.post('/ratings', auth, async (req, res) =>{
 //read all ratings for logged in user using optional query strings
 //get /ratings?limit=1&skip=20
 //get /ratings?sortBy=createdAt:desc
-router.get('/ratings',  auth, async (req, res) => {
+router.get('/ratings',   async (req, res) => {
     const match = {}
     const sort = {}
     if(req.query.completed){
@@ -50,7 +51,7 @@ router.get('/ratings',  auth, async (req, res) => {
 })
 
 //read one rating by id
-router.get('/ratings/:id', auth, async (req, res) => {
+router.get('/ratings/:id',  async (req, res) => {
     const _id = req.params.id
     try{
         const rating = await Rating.findOne({_id, owner: req.user._id})
@@ -64,7 +65,7 @@ router.get('/ratings/:id', auth, async (req, res) => {
 })
 
 //update existing rating by id
-router.patch('/ratings/:id', auth, async (req, res) => {
+router.patch('/ratings/:id',  async (req, res) => {
     const updates = Object.keys(req.body)
     const allowedUpdates = [ 'description','completed']
     const isValidOperation = updates.every( update => allowedUpdates.includes(update))
@@ -88,7 +89,7 @@ router.patch('/ratings/:id', auth, async (req, res) => {
 })
 
 //delete a rating
-router.delete('/ratings/:id', auth, async (req, res) => {
+router.delete('/ratings/:id',  async (req, res) => {
     try{
         const rating = await Rating.findOneAndDelete({_id: req.params.id, owner: req.user.id})
         if (!rating) {

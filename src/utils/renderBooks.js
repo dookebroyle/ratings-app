@@ -1,8 +1,8 @@
 const request = require ('request');
 const { masterkey } = require('../config.js');
 
-const bestSellers = (callback) => {
-    const bestsellerUrl = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${masterkey}`
+const bestSellers = (booklistName, callback) => {
+    const bestsellerUrl = `https://api.nytimes.com/svc/books/v3/lists/current/${booklistName}.json?api-key=${masterkey}`
 
     request({ url: bestsellerUrl, json: true }, async (error, res) => {
         if (error){

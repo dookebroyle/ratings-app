@@ -18,13 +18,15 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
     try{
         const token = await user.generateAuthToken()
         await user.save()
+        res.cookie('Authorization', `Bearer ${token}`,{
+            httpOnly: true,
+            maxAge: 90000,
+            sameSite: true
+        })
         res.status(201).render( 'home',{
-            username: user.username
+            username: user.username,
         })
-        //view profile
-        router.get('/users/me', auth,  async (req, res) => {
-            res.send(req.user)
-        })
+
     } catch (e)  {
         res.status(400).send(e)
     }
@@ -33,51 +35,57 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
 
 
 //user login
-router.post('/users/login',urlencodedParser, async (req, res) =>{
+router.post('/users/login', urlencodedParser, async (req, res) =>{
     try{
-        //res.send(req.body)
         const user = await User.findByCredentials(req.body.username, req.body.password)
         const token = await user.generateAuthToken()
-       // res.send({user, token})
+
+        res.cookie('Authorization', `Bearer ${token}`,{
+            httpOnly: true,
+            maxAge: 90000,
+            sameSite: true
+        })
         res.status(201).render( 'home',{
-            username: user.username
-     })
-    //view profile
-    router.get('/users/me', auth,  async (req, res) => {
-        res.send(req.user)
+            user,
+            token
     })
+
     } catch (e) {
         res.status(400).send()
     }
 })
 
 //user logout
-router.post('/users/logout', auth, async (req, res) => {
+router.post('/users/logout', urlencodedParser, async (req, res) => {
     try { 
+        const user = await User.findByCredentials(req.body.username, req.body.password)
         req.user.tokens = req.user.tokens.filter( token => {
             return token.token !== req.token
         })
         await req.user.save()
-        res.send()
+        res.status(201).render( 'error',{
+            title: 'Please sign in again'
+    })
+
     } catch (e) { 
-        res.status(500).send()
+        res.status(500).send({
+        })
     }
 })
 
 //user logout of all sessions
-router.post('/users/logoutAll', auth, async (req, res) => {
+router.post('/users/logoutAll',urlencodedParser, async (req, res) => {
     try{
         req.user.tokens = []
         await req.user.save()
-        res.send()
     } catch (e) {
         res.status(500).send()
     }
 })
 
 //update existing user
-router.patch('/users/me', auth, async (req, res) => {
-    const allowedUpdates = [ 'name', 'email', 'password', 'age']
+router.patch('/users/me', async (req, res) => {
+    const allowedUpdates = [ 'username', 'password']
     const updates = Object.keys(req.body)
     const isValidOperation = updates.every( update => allowedUpdates.includes(update))
     if (!isValidOperation){
@@ -93,10 +101,9 @@ router.patch('/users/me', auth, async (req, res) => {
 })
 
 //delete user
-router.delete('/users/me', auth, async (req, res) => {
+router.delete('/users/me', async (req, res) => {
     try{
         await req.user.remove()
-        await sendCancelEmail(req.user.email, req.user.name)
         res.send(req.user)
     } catch (e) {
         res.status(500).send()

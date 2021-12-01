@@ -2,10 +2,8 @@
 
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title></title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/styles.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
@@ -14,14 +12,14 @@
     <body>
         {{>header}}
         
-        <h3>List of Current NY Times Bestseller Books</h3>
+       
         <ul class="results" id={{book-rank}}>
             {{#each bookData as |book|}}
-                <li>{{book.title}}</li>
-               <a class="review-link" id={{book.rank}}>Rate this book</a>
-                <li>{{book.rank}}</li>
-                <li>{{book.author}}</li>
-                <li>{{book.publisher}}</li>
+                <li><strong>Book Title: {{book.title}}</strong></li>
+                <a class="review-link" id={{book.rank}}>Rate this book</a>
+                <li>Rank: {{book.rank}}</li>
+                <li>Author(s): {{book.author}}</li>
+                <li>Publisher(s):{{book.publisher}}</li><br>
                 <img src={{book.image}}></img>
             {{/each}}
         </ul>

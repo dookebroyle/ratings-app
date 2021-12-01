@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
+const { mongodburl } = require('../config.js');
 
-MONGODB_URL='mongodb://127.0.0.1:27017/ratings-app-api'
 
-mongoose.connect(MONGODB_URL, {
+
+mongoose.connect(mongodburl, {
     useNewUrlParser: true,
     //userCreateIndex: true
 });

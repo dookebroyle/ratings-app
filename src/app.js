@@ -1,10 +1,13 @@
 const express = require('express')
 const path = require('path')
 const app = express()
+const cookieParser = require('cookie-parser')
+
 const hbs = require('hbs')
 const User = require('./models/user')
 const userRouter = require('./routers/user')
 const ratingRouter = require('./routers/rating')
+const bookRouter = require('./routers/books')
 const { port, mongodburl } = require('./config');
 require('./db/mongoose')
 
@@ -19,52 +22,30 @@ app.set('views', viewPath)
 const partialsPath = path.join(__dirname, '../templates/partials')
 hbs.registerPartials(partialsPath)
 
-const booklist = require('./utils/renderBooklist')
-const bestSellers = require('./utils/renderBooks')
+
 
 //set up static route for express
 app.use(express.static(publicDirectoryPath))
 app.use(express.json())
-
+app.use(cookieParser())
 app.use(userRouter)
 app.use(ratingRouter)
+app.use(bookRouter)
 
 //get home page with drop down list of all bestseller books
 app.get('/',  (req, res) => {
-    res.render('index')
+    res.render('index', {
+        title: 'Log In or Sign Up'
+    })
 })
 
 app.get('/home', (req, res) =>{
-    if(req.query) {
-        res.render('home', {
-            
-        })
-}
-})
+    res.render('home', {
+        title: 'Home',
+        user: req.user
 
-// get a list of all books on the selected booklist
-app.get('/currentbest', (req, res) => {
-    bestSellers ((error, bookData) => {
-        if(error) {
-            return  res.send({error})
-        }
-        res.render('currentbest', {
-            bookData,
-            booklistName: req.query.booklistName,
-            booklist:bookData
-        })
     })
 })
-
-app.get('/getbooklists', (req, res) => {
-    booklist ((error, booklistData) =>{
-        res.render('getbooklists', {
-            title: 'Find NY Times Bestseller Lists',
-            booklist: booklistData
-        })
-    })
-})
-
 
 //write a rating/review for the selected book
 app.get('/rating', (req, res) => {
@@ -84,6 +65,7 @@ app.get('/myratings', (req, res) => {
         title: 'My Ratings'
     })
 })
+
 
 
 
