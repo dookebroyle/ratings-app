@@ -39,6 +39,12 @@ app.get('/',  (req, res) => {
         title: 'Log In or Sign Up'
     })
 })
+//get the login page
+app.get('/index',  (req, res) => {
+    res.render('index', {
+        title: 'Log In or Sign Up'
+    })
+})
 //get the home page
 app.get('/home',  (req, res) =>{
     res.render('home', {
@@ -60,6 +66,7 @@ app.get('/messages',(req, res) => {
 //write a rating/review for the selected book
 app.get('/rating', (req, res) => {
     let bookTitle = req.query.booktitle
+    bookTitle = bookTitle.toString()
     bookTitle = bookTitle.replace(/-/g, ' ');
     res.render('rating', {
         title: 'Leave a review',
@@ -83,6 +90,10 @@ app.get('/myratings', (req, res) => {
         bookName
     })
 })
+
+app.get('*', function(req, res){
+    res.status(404).render('404')
+  })
 
 
 app.listen(port, () => {

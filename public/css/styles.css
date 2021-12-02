@@ -24,24 +24,19 @@ img {
   width: 128px;
    height: 193px;
 }
-a{
-    cursor:pointer;
+a{ cursor:pointer;
     color:blue;
     text-decoration:underline;
+    margin-right: 10px;
 }
 
-
+#status-text {
+  font-size: 64px;
+}
 
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;
-}
-
-
-
-/* Add padding to containers */
-.container {
-  padding: 16px;
 }
 
 /* Change styles for span and cancel button on extra small screens */

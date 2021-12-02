@@ -49,7 +49,18 @@ Usage
     Read, Update, or Delete your ratings
 
 
-Roadmap
+Known Issues
+
+    -Testing needs to be implemented. Should have been done throughout the process. 
+        I understand the importance of testing and would implement while employed with Coschedule
+    -Styling is atrocious - I'm very sorry to whomever is reviewing my app and code. 
+        I am familiar with CSS flexbox and grid and can implement styling if required for the position
+    -Need to process data more finely for reader viewability (ex. The book titles are in all caps)
+    -If this was a real project and alloted more time, it would be best to pass book object to rating and store
+        rather than looking up book by title as can cause collisions
+    -Accessibility. Need to add alt tags.
+    -
+
 
 
 
@@ -61,5 +72,6 @@ brookedoyle13@gmail.com
 Project Link: https://github.com/dookebroyle/ratings-app.git
 
 
-Acknowledgments
+Acknowledgments 
+Font Awesome Star Ratings
 

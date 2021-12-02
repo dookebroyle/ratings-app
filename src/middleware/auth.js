@@ -19,7 +19,8 @@ const auth = async (req, res, next) => {
         req.token = token //tokens array
         next()
     } catch (e) {
-        res.status(401).send({error: 'Please authenticate.'})
+        res.status(401).render('401', {
+            error: 'Please authenticate.'})
     }
 }
 

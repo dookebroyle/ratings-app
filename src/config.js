@@ -13,6 +13,6 @@ module.exports = {
   masterkey: process.env.NYTIMES_API_KEY,
   port: process.env.PORT,
   mongodburl: process.env.MONGODB_URL,
-  jwtsecret: process.env.JWT_SECRET
-};
+  jwtsecret: process.env.JWT_SECRET,
+}
 
