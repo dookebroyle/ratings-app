@@ -58,8 +58,8 @@ Known Issues
     -Need to process data more finely for reader viewability (ex. The book titles are in all caps)
     -If this was a real project and alloted more time, it would be best to pass book object to rating and store
         rather than looking up book by title as can cause collisions
-    -Accessibility. Need to add alt tags.
-    -
+    -Responsiveness and accessibility need to be improved.  Need to add alt tags.
+    
 
 
 
