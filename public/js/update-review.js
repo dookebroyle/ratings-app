@@ -1,11 +1,11 @@
 const updateForm = document.querySelector('#update-form')
+const successText = document.querySelector('#success-text')
 
-
+//listen for post click on Review Update form and fire off ratings/postupdate
 updateForm.addEventListener('submit', (e) => {
     e.preventDefault()
     let bookTitle = document.querySelector('#booktitle').value
     let stars = document.querySelector('input[name="rate"]:checked').value;
-    
     let input = document.querySelector('#review-input').value
 
     fetch(`http://localhost:3000/ratings/postupdate`, {
@@ -13,6 +13,7 @@ updateForm.addEventListener('submit', (e) => {
         headers: {
             "content-type" : "application/json",
         },
+        redirect: 'follow',
         body: JSON.stringify({
             bookTitle,
             stars, 
@@ -22,8 +23,10 @@ updateForm.addEventListener('submit', (e) => {
         if (response.error){
             console.log(response.error)
         } else {
-            console.log(response)
+            successText.innerHTML = 'Review Updated!!'
         }
     })
-    //window.location.replace(`http://localhost:3000/myratings`)
 })
+
+
+

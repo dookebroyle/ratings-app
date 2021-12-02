@@ -1,36 +1,24 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title></title>
+        <title>Bestseller Books</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="/css/styles.css">
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-
     </head>
     <body>
         {{>header}}
-        
-       
         <ul class="results" id={{book-rank}}>
             {{#each bookData as |book|}}
                 <li><strong>Book Title: {{book.title}}</strong></li>
-                <a class="review-link" >Rate this book</a>
+                <input type="button" class="review-link" value ="Rate this book">
                 <li>Rank: {{book.rank}}</li>
                 <li>Author(s): {{book.author}}</li>
                 <li>Publisher(s):{{book.publisher}}</li><br>
                 <img src={{book.image}}></img>
             {{/each}}
         </ul>
-
- 
-
-        
-        
-
-
-        
         <script src="/js/currentbest.js" async defer></script>
     </body>
 </html>

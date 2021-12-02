@@ -9,8 +9,8 @@
 <body>
     {{>header}}
     <h3 id="book-title-header"> Update Book Review for {{bookName}}</h3>
-    <form id="update-form">
-        <div class="star-widget">
+    <form id="update-form" action="">
+        
             <input id="booktitle" type="hidden" name="booktitle" value="{{bookName}}">
             <h4>Star Rating:</h4>
             <input class="rating-star" type="radio" name="rate" id="1" value="1">
@@ -25,13 +25,15 @@
             <label class="rating-star" for="rate-1" class="fas fa-star" >5</label>
             <header>
             </header>
-        <div class="textarea">
+        
+        
             <textarea cols="30" name="input" id="review-input" placeholder="Write your book review here..." required></textarea>
-        </div>
-        <div class="btn">
+        
             <button type="submit" class="review-button">Post</button>
-        </div>
-        </div>
+
+            <h4 id="success-text"></h4>
+        
+
     </form>
 <script src="/js/update-review.js"></script>
 </body>

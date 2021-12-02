@@ -3,13 +3,13 @@
 <html>
     <head>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title></title>
+        <title>My Ratings</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
         {{>header}}
-        
+            <p id="message"><p/>
             <ul class="results">
             {{#each ratings as |rating|}}
             <form class="ratings-form" action="/ratings/edit" method="get">
@@ -18,12 +18,15 @@
                 <li>Review Comments {{rating.reviewText}}</li>
                 <li>Submitted on: {{createdAt}}</li> 
                 <input type="submit" name="{{rating.bookName}}" value="Edit">
-                <input type="submit" name="{{rating.bookName}}" value="Delete">
+                <input id="delete-buttons" type="button" name="{{rating.bookName}}" value="Delete">
                 </form>
+                <br>
             {{/each}}
+
+            
         
        
-       
+       <script src="/js/myratings.js"></script>
     </body>
 </html>
 

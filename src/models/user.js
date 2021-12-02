@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken')
 const Rating = require ('./rating')
 const {jwtsecret} = require('../config')
 
+
+//user schema
 const userSchema = new mongoose.Schema({
     username:{
         type: String,
@@ -36,16 +38,17 @@ const userSchema = new mongoose.Schema({
     timestamps: true
 })
 
+//tie the ratings owner field to the owner (user) ID
 userSchema.virtual('ratings', {
     ref: 'Rating',
     localField: '_id',
     foreignField: 'owner'
 })
-//
+
+//retrieve user info and convert to JSON for response
 userSchema.methods.toJSON = function () {
     const user = this
     const userObject = user.toObject()
-    
     delete userObject.password
     delete userObject.tokens
     return userObject
@@ -64,9 +67,9 @@ userSchema.statics.findByCredentials = async (username, password) => {
     return user;
 }
 
+//create a jsonwebtoken
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-
     token = jwt.sign({ _id: user._id.toString() }, 'jwtsecret')
     user.tokens = user.tokens.concat({ token })
     await user.save()
@@ -77,17 +80,9 @@ userSchema.methods.generateAuthToken = async function () {
 //hash plain text password before saving
 userSchema.pre('save', async function(next) {
     const user = this
-
     if(user.isModified('password')){
         user.password = await bcrypt.hash(user.password, 8);
     }
-    next()
-})
-
-//delete user ratings when user is removed
-userSchema.pre('remove', async function (next) {
-    const user = this
-    await Rating.deleteMany({ owner: user._id})
     next()
 })
 

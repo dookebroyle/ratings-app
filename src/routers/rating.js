@@ -4,6 +4,7 @@ const Rating = require('../models/rating')
 const router = new express.Router()
 const auth = require('../middleware/auth')
 
+
 //create new rating with logged in user as owner
 router.post('/ratings', auth, async (req, res) =>{
     try{
@@ -14,12 +15,13 @@ router.post('/ratings', auth, async (req, res) =>{
             stars: req.body.rate,
             owner: req.user._id,
             reviewText: req.body.input
-            //TO DO
-            //set this to pass a book object instead
+            //todo 
+            //set this to pass a book object instead -- ran out of time
         })
         await rating.save()
         res.status(201).render('message',{
-            title: "Rating Submitted",
+            title: "Rating submitted",
+            bookTitle,
             rating
         })
     } catch (e) {
@@ -41,10 +43,6 @@ router.get('/myratings', auth,  async (req, res) => {
     }
 })
 
-
-
-
-
 //read one rating by name and either edit or delete
 router.get('/ratings/edit', auth,  async (req, res) => {
     let bookName = Object.keys(req.query)
@@ -63,26 +61,11 @@ router.get('/ratings/edit', auth,  async (req, res) => {
         } catch (e) {
             res.status(500).send()
         }
-    
-        //delete fields only
-    } else if (choice.includes('Delete')) {
-        try{
-            const rating = await Rating.findOne({bookName})
-            if(!rating){
-                res.status(404).send()
-            }
-            res.status(200).render('message', {
-                message: 'Rating deleted'
-            })
-        } catch (e) {
-            res.status(500).send()
-        }
-    }
+    } 
 })
 
-
-
-//update existing rating by name
+//update existing rating by searching for book name
+//todo - after updating ratings post route to send book object, alter this route
 router.patch('/ratings/postupdate', auth, async (req, res) => {
     
     const filter = { bookName: req.body.bookTitle}
@@ -101,10 +84,9 @@ router.patch('/ratings/postupdate', auth, async (req, res) => {
             // TO DO
             // set this to pass a book object instead
         })
-        
         await rating.save()
-        
-        res.send(200).render('message', {
+        res.status(200).render('message', {
+            title: 'Review Updated',
             message: 'Rating updated'
         })
         
@@ -114,17 +96,19 @@ router.patch('/ratings/postupdate', auth, async (req, res) => {
     }
 })
 
-// //delete a rating
-// router.delete('/ratings/:id', async (req, res) => {
-//     try{
-//         const rating = await Rating.findOneAndDelete({_id: req.params.id, owner: req.user.id})
-//         if (!rating) {
-//             res.status(404).send()
-//         }
-//         res.send(rating)
-//     } catch (e) {
-//         res.status(500).send()
-//     }
-// })
+//delete a rating
+router.delete('/ratings/delete', auth, async (req, res) => {
+    const filter = { bookName: req.body.bookTitle}
+    console.log(filter)
+    try{
+        const rating = await Rating.findOneAndDelete({filter})
+        if (!rating) {
+            res.status(404).send()
+        }
+        res.send(rating)
+    } catch (e) {
+        res.status(500).send()
+    }
+})
 
 module.exports = router

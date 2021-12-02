@@ -18,6 +18,7 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
     try{
         const token = await user.generateAuthToken()
         await user.save()
+        //send cookie to browser
         res.cookie('Authorization', `Bearer ${token}`,{
             httpOnly: true,
             maxAge: 9000000,
@@ -26,20 +27,17 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
         res.status(201).render( 'home',{
             username: user.username,
         })
-
     } catch (e)  {
         res.status(400).send(e)
     }
 })
-
-
 
 //user login
 router.post('/users/login', urlencodedParser, async (req, res) =>{
     try{
         const user = await User.findByCredentials(req.body.username, req.body.password)
         const token = await user.generateAuthToken()
-
+        //send cookie to browser
         res.cookie('Authorization', `Bearer ${token}`,{
             httpOnly: true,
             maxAge: 9000000,
@@ -66,7 +64,6 @@ router.post('/users/logout', urlencodedParser, async (req, res) => {
         res.status(201).render( 'error',{
             title: 'Please sign in again'
     })
-
     } catch (e) { 
         res.status(500).send({
         })
@@ -109,8 +106,5 @@ router.delete('/users/me', async (req, res) => {
         res.status(500).send()
     }
 })
-
-
-
 
 module.exports = router;

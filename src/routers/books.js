@@ -7,7 +7,7 @@ const bestSellers = require('../utils/renderBooks')
 
 
 
-// get a list of all books on the selected booklist
+// get hardcover fiction books only
 router.get('/currentbest', auth, (req, res) => {
     bestSellers ( 'Hardcover Fiction', (error, bookData) => {
         if(error) {
@@ -22,6 +22,7 @@ router.get('/currentbest', auth, (req, res) => {
     })
 })
 
+// retrieve a list of Book LISTS
 router.get('/getbooklists', auth, (req, res) => {
     booklist ((error, booklistData) =>{
         res.render('getbooklists', {
@@ -30,6 +31,8 @@ router.get('/getbooklists', auth, (req, res) => {
         })
     })
 })
+
+//fetch books based on which list was chosen
 router.get('/fetchbooks', auth, (req, res) => {
     let name = req.query.booklistName
     name = name.trim()

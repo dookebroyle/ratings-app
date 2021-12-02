@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const validator = require('validator')
 
-
+//rating schema
 const ratingSchema = new mongoose.Schema( {
     bookName: {
         type: String, 
