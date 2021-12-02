@@ -2,6 +2,12 @@ const reviewLink = document.querySelectorAll('.review-link')
 const bookItems = document.querySelectorAll('.results')
 const booksContainer = document.querySelector('#book-container')
 
+
+//TODo
+//change this to submit form to /ratings page.
+//the link doesn't work without this code right now
+
+
 // Send book data to rating page
 reviewLink.forEach( (link) => {
     link.addEventListener('click', function (e)  {

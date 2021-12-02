@@ -41,7 +41,7 @@ app.get('/',  (req, res) => {
     })
 })
 
-app.get('/home', (req, res) =>{
+app.get('/home',  (req, res) =>{
     res.render('home', {
         title: 'Home',
         user: req.user
@@ -49,33 +49,17 @@ app.get('/home', (req, res) =>{
     })
 })
 
-app.get('/error', (req, res) =>{
-    res.render('error', {
-        title: 'error',
-    })
-})
-
-app.get('/success', (req, res) =>{
-    res.render('success', {
-        title: 'success',
-    })
-})
 
 
-/* THIS PORTION IS NOT GETTING THE QUERY STRING */
-
-
-/* ____________________________________________________*/
 
 //write a rating/review for the selected book
 app.get('/rating', (req, res) => {
-    let bookTitle = req.query.booktitle.toString();
-    bookTitle = bookTitle.replace("-", ' ');
-
+    let bookTitle = req.query.booktitle
+    bookTitle = bookTitle.replace(/-/g, ' ');
     res.render('rating', {
         title: 'Leave a review',
         bookID: req.query.bookid,
-        bookTitle: bookTitle
+        bookTitle,
     })
 })
 
@@ -85,6 +69,17 @@ app.get('/myratings', (req, res) => {
         title: 'My Ratings'
     })
 })
+
+
+//get edit page for single rating
+app.get('/myratings', (req, res) => {
+    
+    res.render('update-review', {
+        title: 'Edit your review',
+        bookName
+    })
+})
+
 
 
 

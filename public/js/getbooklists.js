@@ -1,4 +1,4 @@
-//added functionality to pick from a list of NY Times Bestseller Book Lists ---- not finished
+
 const submit = document.querySelector('#booklist-form')
 const selectBox = document.querySelector('#select-box')
 selectBox.addEventListener('onchange', (e)=> {

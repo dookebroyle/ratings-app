@@ -7,7 +7,7 @@ const auth = async (req, res, next) => {
     
     try {
         const token = req.cookies.Authorization.replace('Bearer ', '')
-        let decoded = jwt.verify(token, 'thisistoken')
+        let decoded = jwt.verify(token, 'jwtsecret')
         decoded = Object.values(decoded);
         const decodedValue = decoded[0];
         const user = await User.findOne({_id: decodedValue, 'tokens.token':token})

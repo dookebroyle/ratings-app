@@ -4,14 +4,14 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Rating</title>
+    <title>Update Rating</title>
 </head>
 <body>
     {{>header}}
-    <h3 id="book-title-header">Book Review for {{bookTitle}}</h3>
-    <form id="review-form" action="/ratings" method="post">
+    <h3 id="book-title-header"> Update Book Review for {{bookName}}</h3>
+    <form id="update-form">
         <div class="star-widget">
-            <input type="hidden" name="booktitle" value="{{bookTitle}}">
+            <input id="booktitle" type="hidden" name="booktitle" value="{{bookName}}">
             <h4>Star Rating:</h4>
             <input class="rating-star" type="radio" name="rate" id="1" value="1">
             <label class="rating-star" for="rate-5" class="fas fa-star" >1</label>
@@ -33,6 +33,6 @@
         </div>
         </div>
     </form>
- 
+<script src="/js/update-review.js"></script>
 </body>
 </html>

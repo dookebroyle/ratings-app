@@ -9,10 +9,21 @@
     </head>
     <body>
         {{>header}}
-
         
-        <script src="js/myratings.js" async defer></script>
-        <script src="/js/app.js" async defer></script>
+            <ul class="results">
+            {{#each ratings as |rating|}}
+            <form class="ratings-form" action="/ratings/edit" method="get">
+                <li><strong>Book Title: {{rating.bookName}}</strong></li>
+                <li>Stars {{rating.stars}}</li>
+                <li>Review Comments {{rating.reviewText}}</li>
+                <li>Submitted on: {{createdAt}}</li> 
+                <input type="submit" name="{{rating.bookName}}" value="Edit">
+                <input type="submit" name="{{rating.bookName}}" value="Delete">
+                </form>
+            {{/each}}
+        
+       
+       
     </body>
 </html>
 

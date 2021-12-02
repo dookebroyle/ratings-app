@@ -16,7 +16,7 @@
         <ul class="results" id={{book-rank}}>
             {{#each bookData as |book|}}
                 <li><strong>Book Title: {{book.title}}</strong></li>
-                <a class='button' class="review-link" id={{book.rank}}>Rate this book</a>
+                <a class="review-link" >Rate this book</a>
                 <li>Rank: {{book.rank}}</li>
                 <li>Author(s): {{book.author}}</li>
                 <li>Publisher(s):{{book.publisher}}</li><br>
@@ -32,6 +32,5 @@
 
         
         <script src="/js/currentbest.js" async defer></script>
-        <script src="/js/app.js" async defer></script>
     </body>
 </html>

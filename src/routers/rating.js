@@ -8,7 +8,7 @@ const auth = require('../middleware/auth')
 router.post('/ratings', auth, async (req, res) =>{
     try{
         const bookTitle = req.body.booktitle.replace(/-/g, ' ')
-        console.log(req.body.rate.value)
+        
         const rating = new Rating({
             bookName: bookTitle,
             stars: req.body.rate,
@@ -27,76 +27,92 @@ router.post('/ratings', auth, async (req, res) =>{
     }
 })
 
-//read all ratings for logged in user using optional query strings
-//get /ratings?limit=1&skip=20
-//get /ratings?sortBy=createdAt:desc
-// router.get('/ratings',   async (req, res) => {
-//     const match = {}
-//     const sort = {}
+//read all ratings for logged in user
+router.get('/myratings', auth,  async (req, res) => {
+    try{
+        const ratings = await Rating.find({ owner: req.user._id})
+        
+        res.status(200).render('myratings', {
+            title: 'My Book Ratings',
+            ratings
+        })
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+
+
+
+
+//read one rating by name and either edit or delete
+router.get('/ratings/edit', auth,  async (req, res) => {
+    let bookName = Object.keys(req.query)
+    let choice = Object.values(req.query)
+    bookName = bookName.toString()
+    //edit fields only
+    if (choice.includes('Edit')){
+        try{
+            const rating = await Rating.findOne({bookName})
+            if(!rating){
+                res.status(404).send()
+            }
+            res.status(200).render('update-review', {
+                bookName
+            })
+        } catch (e) {
+            res.status(500).send()
+        }
     
-//     if(req.query.completed){
-//         match.completed = req.query.completed === 'true'
-//     }
-
-//     if(req.query.sortBy) {
-//         const parts = req.query.sortBy.split(':')
-//         sort[parts[0]] = (parts[1] === 'desc' ? -1 : 1)
-//     }
-//     try{
-//         await req.user.populate({
-//             path: 'ratings',
-//             match,
-//             options: {
-//                 limit: parseInt(req.query.limit),
-//                 skip: parseInt(req.query.skip),
-//                 sort
-//             }
-//         }).execPopulate()
-
-//         // const ratings = await Rating.find({ owner: req.user._id})
-//         res.send(req.user.ratings)
-//     } catch (e) {
-//         res.status(500).send()
-//     }
-// })
-
-// //read one rating by id
-// router.get('/ratings/:id',  async (req, res) => {
-//     const _id = req.params.id
-//     try{
-//         const rating = await Rating.findOne({_id, owner: req.user._id})
-//         if(!rating){
-//             res.status(404).send()
-//         }
-//         res.send(rating)
-//     } catch (e) {
-//         res.status(500).send()
-//     }
-// })
-
-// //update existing rating by id
-// router.patch('/ratings/:id',  async (req, res) => {
-//     const updates = Object.keys(req.body)
-//     const allowedUpdates = [ 'description','completed']
-//     const isValidOperation = updates.every( update => allowedUpdates.includes(update))
-
-//     if (!isValidOperation) {
-//         return res.status(400).send({error: 'Invalid updates'})
-//     }
+        //delete fields only
+    } else if (choice.includes('Delete')) {
+        try{
+            const rating = await Rating.findOne({bookName})
+            if(!rating){
+                res.status(404).send()
+            }
+            res.status(200).render('message', {
+                message: 'Rating deleted'
+            })
+        } catch (e) {
+            res.status(500).send()
+        }
+    }
+})
 
 
-//     try{
-//         const rating = await Rating.findOne({_id: req.params.id, owner: req.user._id})
-//         if(!rating) {
-//             res.status(404).send()
-//         }
-//         updates.forEach( update => rating[update] = req.body[update])
-//         await rating.save()
-//         res.send(rating)
-//     } catch (e) {
-//         res.send(e)
-//     }
-// })
+
+//update existing rating by name
+router.patch('/ratings/postupdate', auth, async (req, res) => {
+    
+    const filter = { bookName: req.body.bookTitle}
+    const update = {stars: req.body.stars, reviewText: req.body.input}
+    try{
+        const rating = await Rating.findOneAndUpdate(filter, update)
+        if(!rating) {
+            console.log('book not found')
+            res.status(404).send()
+        }
+        rating = new Rating({
+            bookName: bookTitle,
+            stars: req.body.rate,
+            owner: req.user._id,
+            reviewText: req.body.input
+            // TO DO
+            // set this to pass a book object instead
+        })
+        
+        await rating.save()
+        
+        res.send(200).render('message', {
+            message: 'Rating updated'
+        })
+        
+        res.send(rating)
+    } catch (e) {
+        res.send(e)
+    }
+})
 
 // //delete a rating
 // router.delete('/ratings/:id', async (req, res) => {

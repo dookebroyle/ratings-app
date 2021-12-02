@@ -20,6 +20,15 @@ button {
   
   border-radius: 30px;
 }
+img {
+  width: 128px;
+   height: 193px;
+}
+a{
+    cursor:pointer;
+    color:blue;
+    text-decoration:underline;
+}
 
 
 
