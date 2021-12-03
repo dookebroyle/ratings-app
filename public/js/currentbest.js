@@ -10,7 +10,7 @@ reviewLink.forEach( (link) => {
         let previousElem =link.previousSibling.previousSibling.textContent
         previousElem = previousElem.replace('Book Title:', '')
         const bookTitle = previousElem.replace(/\s/g, "-")
-        console.log(bookTitle)
+        
 
     fetch(`http://localhost:3000/ratings?bookid=${bookId}&booktitle=${bookTitle}`).then((response) => {
         if (response.error){

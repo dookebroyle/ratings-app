@@ -98,8 +98,9 @@ router.patch('/ratings/postupdate', auth, async (req, res) => {
 
 //delete a rating
 router.delete('/ratings/delete', auth, async (req, res) => {
-    const filter = { bookName: req.body.bookTitle}
-    console.log(filter)
+    const filter = { 
+        bookName: req.query.bookTitle
+    }
     try{
         const rating = await Rating.findOneAndDelete({filter})
         if (!rating) {
