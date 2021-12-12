@@ -2,16 +2,14 @@
 <html>
     <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type"> 
-        <title></title>
+        <title>Bad Request</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="/css/styles.css">
       <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
         {{>header}}
-        <h3 id="status-text">401</h3>
-        <h4>NOPE</h4>
-        <p>You aren't supposed to be here. Did you try logging in?</p>
+        <p>{{message}}</p>
         <a href="/index/#signup-submit">{{linkName}}</a>
     </body>
 </html>

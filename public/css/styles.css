@@ -1,12 +1,31 @@
+@import url('https://fonts.googleapis.com/css2? family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200; 400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
-/* Full-width inputs */
+/* General Stylings ----------- */
+html, body {
+  font-weight: 400;
+  color: #2A363B;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+  max-width: 100vw;
+  min-width: 100vw;
+}
+h1, h2, h3, h4{
+  font-family:  'Open Sans', sans-serif;
+  font-weight: lighter;
+  text-align: center;
+}
+
+
+/*  set stype for all inputs */
 input[type=text], input[type=password] {
-  width: 100%;
   padding: 12px 20px;
-  margin: 8px 0;
   display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
+  border-radius: 13px;
+  margin: 5px;
 }
 
 /* Set a style for all buttons */
@@ -14,38 +33,134 @@ button {
   background-color: #0f8882;
   color: white;
   padding: 14px 20px;
-  margin: 8px 0;
   border: none;
   cursor: pointer;
-  
-  border-radius: 30px;
+  border-radius: 16px;
+  font-size: 16px;
 }
-img {
-  width: 128px;
-   height: 193px;
+input[type=button]{
+  background-color: #0f8882;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  font-size: 16px;
 }
-a{ cursor:pointer;
-    color:blue;
-    text-decoration:underline;
-    margin-right: 10px;
-}
-
-#status-text {
-  font-size: 64px;
-}
-
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;
 }
 
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-  span.password {
-    display: block;
-    float: none;
+/* Set a style for all book images */
+img {
+  width: 128px;
+   height: 193px;
+}
+/* Set a style for all links */
+a{ 
+  cursor:pointer;
+  background-color: #0f8882;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  width: max-content;
+  text-decoration: none;
+  font-size: 16px;
+}
+ul {
+  list-style-type: none;
+}
+p {
+  text-align: center;
+}
+
+
+
+
+
+/* Header styling ----------- */
+nav {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+/* Login/Signup Styling ----------- */
+#container-login {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-content: center;
+  grid-column-gap: 100px;
+}
+#or-text {
+  align-self: center;
+  font-size: 32px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * Author: http://stuffandnonsense.co.uk/blog/about/hardboiled_css3_media_queries/
+ */
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px) {
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen
+and (min-width : 321px) {
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen
+and (max-width : 320px) {
+
+}
+
+
+/* iPads (landscape) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+
+}
+
+/* iPads (portrait) ----------- */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : portrait) {
+
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen
+and (min-width : 1224px) {
+
+}
+
+/* Large screens ----------- */
+@media only screen
+and (min-width : 1824px) {
+
   }
-  .cancelbtn {
-    width: 100%;
-  }
-} 
+
+

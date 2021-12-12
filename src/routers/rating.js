@@ -22,7 +22,8 @@ router.post('/ratings', auth, async (req, res) =>{
         res.status(201).render('message',{
             title: "Rating submitted",
             bookTitle,
-            rating
+            rating,
+            user: req.user
         })
     } catch (e) {
         res.status(400).send()
@@ -36,7 +37,8 @@ router.get('/myratings', auth,  async (req, res) => {
         
         res.status(200).render('myratings', {
             title: 'My Book Ratings',
-            ratings
+            ratings,
+            user: req.user
         })
     } catch (e) {
         res.status(500).send()
@@ -56,6 +58,7 @@ router.get('/ratings/edit', auth,  async (req, res) => {
                 res.status(404).send()
             }
             res.status(200).render('update-review', {
+                user: req.user,
                 bookName
             })
         } catch (e) {
@@ -81,13 +84,15 @@ router.patch('/ratings/postupdate', auth, async (req, res) => {
             stars: req.body.rate,
             owner: req.user._id,
             reviewText: req.body.input
+            
             // TO DO
             // set this to pass a book object instead
         })
         await rating.save()
         res.status(200).render('message', {
             title: 'Review Updated',
-            message: 'Rating updated'
+            message: 'Rating updated',
+            user: req.user
         })
         
         res.send(rating)
@@ -106,7 +111,7 @@ router.delete('/ratings/delete', auth, async (req, res) => {
         if (!rating) {
             res.status(404).send()
         }
-        res.send(rating)
+        
     } catch (e) {
         res.status(500).send()
     }

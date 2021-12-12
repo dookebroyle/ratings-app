@@ -1,15 +1,18 @@
 <h1>Bestseller Ratings</h1>
-    <form action="/users/logoutAll" method="post" class="sign-out-form">
-        <button type="submit" class="sign-out-button">Sign Out</button>
-    </form>
-    <form action="/index" method="get" class="sign-in-form">
-        <button type="submit" class="sign-in-button">Log In</button>
-    </form>
-<navbar>
 
+<nav>
     <a href="/home"class="button">Home</a>
     <a href="/myratings" class="button">My Ratings</a>
     <a href="/getbooklists" class="button">Find a Booklist</a>
     <a href="/currentbest" class="button">Hardcover Fiction</a>
-</navbar>
+        <form action="/users/logoutAll" method="post" class="sign-out-form">
+        <button type="submit" class="sign-out-button">Sign Out</button>
+    </form>
+    <form action="/index" method="get" class="sign-in-form">
+        <button type="submit" class="sign-in-button">Sign In</button>
+    </form>
+</nav>
+
+
+
 <h2>{{title}}</h2>

@@ -17,7 +17,8 @@ router.get('/currentbest', auth, (req, res) => {
             title: 'Hardcover Fiction Bestsellers',
             bookData,
             booklistName: req.query.booklistName,
-            booklist:bookData
+            booklist:bookData,
+            user: req.user
         })
     })
 })
@@ -27,7 +28,8 @@ router.get('/getbooklists', auth, (req, res) => {
     booklist ((error, booklistData) =>{
         res.render('getbooklists', {
             title: 'Find NY Times Bestseller Lists',
-            booklist: booklistData
+            booklist: booklistData,
+            user: req.user
         })
     })
 })
@@ -45,7 +47,8 @@ router.get('/fetchbooks', auth, (req, res) => {
             title: `${listName} Bestsellers Books`,
             bookData,
             booklistName: req.query.booklistName,
-            booklist:bookData
+            booklist:bookData,
+            user: req.user
         })
 
     })

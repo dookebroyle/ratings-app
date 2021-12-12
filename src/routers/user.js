@@ -25,10 +25,14 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
             sameSite: true
         })
         res.status(201).render( 'home',{
-            username: user.username,
+           user
         })
     } catch (e)  {
-        res.status(400).send(e)
+        res.status(400).render('400', {
+            message: 'User already exists, please sign in.',
+            linkName: 'Sign In',
+            user
+        })
     }
 })
 
@@ -49,7 +53,11 @@ router.post('/users/login', urlencodedParser, async (req, res) =>{
     })
 
     } catch (e) {
-        res.status(400).send()
+        res.status(400).render('400', {
+            message: 'User and password combination not found. Please try again or create an account',
+            linkName: 'Sign Up',
+            username: req.body.username
+        })
     }
 })
 
@@ -59,6 +67,19 @@ router.post('/users/logoutAll', auth, async (req, res) => {
         req.user.tokens = []
         await req.user.save()
         res.status(201).render( 'index', {
+        })
+    } catch (e) {
+        res.status(500).send()
+    }
+})
+
+//read all ratings for logged in user
+router.get('/home', auth,  async (req, res) => {
+    try{
+        res.status(200).render('home', {
+            title: 'Home',
+            user: req.user,
+            linkName: 'Sign In'
         })
     } catch (e) {
         res.status(500).send()
