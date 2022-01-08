@@ -1,22 +1,46 @@
-@import url('https://fonts.googleapis.com/css2? family=Poppins:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200; 400&display=swap');
+@import url('https://fonts.googleapis.com/css2? family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /* General Stylings ----------- */
 html, body {
-  font-weight: 400;
-  color: #2A363B;
+  color: white;
   font-family: 'Poppins', sans-serif;
   min-height: 100vh;
   max-width: 100vw;
   min-width: 100vw;
+  padding: 0;
+  margin: 0;
 }
-h1, h2, h3, h4{
+.body{
+  padding: 0;
+  margin: 0;
+}
+h1{
   font-family:  'Open Sans', sans-serif;
-  font-weight: lighter;
+  color: white;
+  font-weight: bolder;
   text-align: center;
+  padding-top: 0;
+  margin-top: 0;
 }
 
+h2, h3, h4, label{
+  font-family:  'Open Sans', sans-serif;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+  margin-bottom: 30px;
+  
+}
+.blur-container {
+  backdrop-filter: blur(200px);
+  padding: 25px 40px 25px 40px;
+  margin-bottom: 20px;
+  margin-left:50px;
+  margin-right:50px;
+  
+}
 
 /*  set stype for all inputs */
 input[type=text], input[type=password] {
@@ -29,14 +53,15 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
+.button, button {
   background-color: #0f8882;
   color: white;
   padding: 14px 20px;
   border: none;
   cursor: pointer;
   border-radius: 16px;
-  font-size: 16px;
+  font-size: 20px;
+ 
 }
 input[type=button]{
   background-color: #0f8882;
@@ -45,12 +70,50 @@ input[type=button]{
   border: none;
   cursor: pointer;
   border-radius: 16px;
-  font-size: 16px;
+  font-size: 20px;
+  
+}
+input[type=submit]{
+  background-color: #0f8882;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  font-size: 20px;
+ 
+}
+textarea {
+  padding: 12px 20px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 16px;
+  font-family: Roboto;
 }
 /* Add a hover effect for buttons */
 button:hover {
   opacity: 0.8;
 }
+a:hover {
+  opacity: 0.8;
+}
+input:hover{
+  opacity:0.8;
+}
+
+/* Slow background sroll ----------- */
+#background-container{
+  background-image: url('/img/books.jpg');
+  background-position: top center;
+  background-attachment: scroll;
+  background-size: cover;
+  min-height: 100vh;
+  min-width: 100vw;
+  width: 100%;
+  
+}
+
 
 /* Set a style for all book images */
 img {
@@ -72,10 +135,23 @@ a{
 }
 ul {
   list-style-type: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
 }
 p {
   text-align: center;
+  font-size: 30px;
+  font-weight: bolder;
 }
+label, li, h3 {
+  font-size: 20px;
+  margin: 5px;
+}
+
+
+
+
 
 
 
@@ -85,6 +161,7 @@ p {
 nav {
   display: grid;
   grid-auto-flow: column;
+  
 }
 
 /* Login/Signup Styling ----------- */
@@ -99,6 +176,118 @@ nav {
   align-self: center;
   font-size: 32px;
 }
+
+
+
+/* Homepage links ----------- */
+.list-links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px; 
+}
+
+/* Book lists ----------- */
+.results{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 50px;
+}
+.book-article {
+  display: grid;
+  padding: 50px;
+  grid-template-columns: 1fr auto ;
+  grid-template-areas: "book-description book-image";
+  align-content: center;             
+}
+.book.description{
+  grid-area: book-description;
+}
+.book-image {
+  grid-area: book-image;
+}
+.book-title {
+  font-size: 36px;
+  margin-bottom: 15px;
+}
+
+/*Booklist dropdown ------- */
+
+.booklist-dropdown-container {
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  align-content: center;
+  margin-left: 200px;
+  margin-right: 200px;
+}
+.select-box {
+	display: block;
+	font-size: 16px;
+	font-family: sans-serif;
+	font-weight: 700;
+	color: #444;
+	line-height: 1.3;
+	padding: .6em 1.4em .5em .8em;
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	border: 1px solid #aaa;
+	box-shadow: 0 1px 0 1px rgba(0,0,0,.04);
+	border-radius: .5em;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: #fff;
+	background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
+	  linear-gradient(to bottom, #ffffff 0%,#e5e5e5 100%);
+	background-repeat: no-repeat, repeat;
+	background-position: right .7em top 50%, 0 0;
+	background-size: .65em auto, 100%;
+}
+.select-css::-ms-expand {
+	display: none;
+}
+.select-css:hover {
+	border-color: #888;
+}
+.select-css:focus {
+	border-color: #aaa;
+	box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+	box-shadow: 0 0 0 3px -moz-mac-focusring;
+	color: #222;
+	outline: none;
+}
+.select-css option {
+	font-weight:normal;
+}
+
+
+/* Review Form Fillout ----------- */
+#review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content:space-around;
+  align-items:center;
+}
+
+/* My Book Ratings List ----------- */
+.review-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ratings-form {
+  width: 60vw;
+}
+
+
+
+
+
+
+
+  
+
 
 
 

@@ -8,20 +8,25 @@
       <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
-        {{>header}}
-            <p id="message"><p/>
-            <ul class="results">
-            {{#each ratings as |rating|}}
-            <form class="ratings-form" action="/ratings/edit" method="get">
-                <li><strong>Book Title: {{rating.bookName}}</strong></li>
-                <li>Stars {{rating.stars}}</li>
-                <li>Review Comments {{rating.reviewText}}</li>
-                <li>Submitted on: {{createdAt}}</li> 
-                <input type="submit" name="{{rating.bookName}}" value="Edit">
-                <input id="delete-buttons" type="button" name="{{rating.bookName}}" value="Delete">
-                </form>
-                <br>
-            {{/each}}
+        <div id="background-container">
+            {{>header}}
+                
+                <ul class="review-results">
+                {{#each ratings as |rating|}}
+                <form class="ratings-form blur-container" action="/ratings/edit" method="get">
+                    <p id="message"><p/>
+                    <ul class"book-description">
+                        <li class="book-title"><strong>{{rating.bookName}}</strong></li>
+                        <li>Stars {{rating.stars}}</li>
+                        <li>"{{rating.reviewText}}"</li>
+                        <li>Submitted on: {{createdAt}}</li> 
+                        <input type="submit" name="{{rating.bookName}}" value="Edit">
+                        <input id="delete-buttons" type="button" name="{{rating.bookName}}" value="Delete">
+                        </form>
+                    </ul> 
+                  
+                {{/each}}
+        </div>
        <script src="/js/myratings.js"></script>
     </body>
 </html>

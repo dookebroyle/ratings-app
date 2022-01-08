@@ -8,12 +8,17 @@
       <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
-        {{>header}}
-        <h3 id="message">{{message}} for {{bookTitle}}</h3>
-        <ul>
-            <li><a href="/myratings">My Rated Books</a></li>
-            <li><a href="/currentbest">View Hardcover Fiction</a></li>
-            <li><a href="/getbooklists">View all NY Times Bestseller Lists</a></li>
-        </ul>
+        <div id="background-container">
+            {{>header}}
+            <div class="blur-container">
+                
+                <h3 id="message">Your rating for {{bookTitle}} has been successfully submitted</h3>
+                <ul>
+                    <li class="list-links"><a href="/myratings">My Rated Books</a></li>
+                    <li class="list-links"><a href="/currentbest">View Hardcover Fiction</a></li>
+                    <li class="list-links"><a href="/getbooklists">View all NY Times Bestseller Lists</a></li>
+                </ul>
+            </div>
+        </div>
     </body>
 </html>

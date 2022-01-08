@@ -8,18 +8,22 @@
       <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
+        <div id="background-container">
         {{>header}}
-        <h3>Search Booklists</h3>
-        <form id="booklist-form">
-        <label for="select-box">Choose a booklist</label><br>
-        <select id="select-box">
-            <option selected>No option selected</option>
-            {{#each booklist as |listName|}}
-                <option>{{listName}}</option>
-            {{/each}}
-        </select>
-        <button type="submit">Search</button>
-        </form>
+            <div class="booklist-dropdown-container blur-container">
+                <h3>Search Booklists</h3>
+                <form id="booklist-form">
+                <label  for="select-box">Choose a booklist</label><br>
+                <select class="select-box" id="select-box">
+                    <option selected>No option selected</option>
+                    {{#each booklist as |listName|}}
+                        <option>{{listName}}</option>
+                    {{/each}}
+                </select>
+                <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
         <script src="/js/getbooklists.js" async defer></script>
         <script src="/js/currentbest.js"></script>
     </body>

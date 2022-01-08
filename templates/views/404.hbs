@@ -8,13 +8,17 @@
       <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
-        {{>header}}
-        <h3 id="status-text">404</h3>
-        <p>This page ain't here and/or doesn't exist.</p>
-        <ul>
-            <li><a href="/currentbest">View Hardcover Fiction Bestsellers Books</a></li>
-            <li><a href="/myratings">My Rated Books</a></li>
-            <li><a href="/getbooklists">Search all NY Times Bestseller Lists</a></li>
-        </ul> 
+        <div id="background-container">
+            {{>header}}
+            <div class="blur-container">   
+                <h3 id="status-text">404</h3>
+                <p>This page doesn't exist.</p>
+                <ul>
+                    <li class="list-links"><a href="/currentbest">View Hardcover Fiction Bestsellers Books</a></li>
+                    <li class="list-links"><a href="/myratings">My Rated Books</a></li>
+                    <li class="list-links"><a href="/getbooklists">Search all NY Times Bestseller Lists</a></li>
+                </ul> 
+            </div>
+        </div>
     </body>
 </html>

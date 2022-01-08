@@ -8,26 +8,28 @@
     <title>Create a Rating</title>
 </head>
 <body>
-    {{>header}}
-    <h3 id="book-title-header">Book Review for {{bookTitle}}</h3>
-    <form id="review-form" action="/ratings" method="post">
-        <div class="star-widget">
-            <input type="hidden" name="booktitle" value="{{bookTitle}}">
-            <h4>Star Rating:</h4>
-            <input class="rating-star" type="radio" name="rate" id="1" value="1">
-            <label class="rating-star" for="rate-5" class="fas fa-star" >1</label>
-            <input class="rating-star" type="radio" name="rate" id="2"value="2">
-            <label class="rating-star" for="rate-4" class="fas fa-star" >2</label>
-            <input class="rating-star" type="radio" name="rate" id="3"value="3">
-            <label class="rating-star" for="rate-3" class="fas fa-star" >3</label>
-            <input class="rating-star" type="radio" name="rate" id="4"value="4">
-            <label class="rating-star" for="rate-2" class="fas fa-star" >4</label>
-            <input class="rating-star" type="radio" name="rate" id="5"value="5">
-            <label class="rating-star" for="rate-1" class="fas fa-star" >5</label>
-        </div>
-            <textarea cols="30" name="input" id="review-input" placeholder="Write your book review here..." required></textarea>
-            <button type="submit" class="review-button">Post</button>
-
-    </form>
+    <div id="background-container">
+        {{>header}}
+            <div class="blur-container rating-form-container">  
+                <h3 class="book-title" id="book-title-header">{{bookTitle}}</h3>
+                <form id="review-form" action="/ratings" method="post">
+                    <div class="star-widget">
+                        <input type="hidden" name="booktitle" value="{{bookTitle}}">
+                        <input class="rating-star" type="radio" name="rate" id="1" value="1">
+                        <label class="rating-star" for="rate-5" class="fas fa-star" >1</label>
+                        <input class="rating-star" type="radio" name="rate" id="2"value="2">
+                        <label class="rating-star" for="rate-4" class="fas fa-star" >2</label>
+                        <input class="rating-star" type="radio" name="rate" id="3"value="3">
+                        <label class="rating-star" for="rate-3" class="fas fa-star" >3</label>
+                        <input class="rating-star" type="radio" name="rate" id="4"value="4">
+                        <label class="rating-star" for="rate-2" class="fas fa-star" >4</label>
+                        <input class="rating-star" type="radio" name="rate" id="5"value="5">
+                        <label class="rating-star" for="rate-1" class="fas fa-star" >5</label>
+                    </div>
+                        <textarea cols="30" name="input" id="review-input" placeholder="Write your book review here" required></textarea>
+                        <button type="submit" class="review-button">Post</button>
+                </form>
+            </div>
+    </div>
 </body>
 </html>

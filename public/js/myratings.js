@@ -7,23 +7,21 @@ const successMessage = document.querySelector('#message')
 deleteButtons.forEach( (button) => {
     button.addEventListener('click', function (e)  {
         let bookTitle = document.querySelector('input[value=Delete]').name
-
-
-        
         fetch(`http://localhost:3000/ratings/delete?bookTitle=${bookTitle}`, {
             method: "DELETE",
             redirect: 'follow',
         }).then((response) => {
+            console.log('reached')
             if (response.error){
+                console.log("error")
                 console.log(response.error)
             } else {
+                console.log('no error')
                 successMessage.innerHTML = 'Review deleted!'
                 setTimeout( () => {
                     location.reload(true)
-                }, 2000)
-            }
-            
-            
+                }, 1000)
+            } 
         })
     })
 })

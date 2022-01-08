@@ -103,6 +103,7 @@ router.patch('/ratings/postupdate', auth, async (req, res) => {
 
 //delete a rating
 router.delete('/ratings/delete', auth, async (req, res) => {
+    
     const filter = { 
         bookName: req.query.bookTitle
     }
@@ -110,6 +111,13 @@ router.delete('/ratings/delete', auth, async (req, res) => {
         const rating = await Rating.findOneAndDelete({filter})
         if (!rating) {
             res.status(404).send()
+        }
+        else {
+            res.status(200).render('myratings', {
+                title: 'My Book Ratings',
+                ratings,
+                user: req.user
+            })
         }
         
     } catch (e) {

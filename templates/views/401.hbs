@@ -8,10 +8,13 @@
       <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
-        {{>header}}
-        <h3 id="status-text">401</h3>
-        <h4>NOPE</h4>
-        <p>You aren't supposed to be here. Did you try logging in?</p>
-        <a href="/index/#signup-submit">{{linkName}}</a>
+        <div id="background-container">
+            {{>header}}
+            <div class="blur-container">
+                <h3 id="status-text">401</h3>
+                <p>You aren't supposed to be here. Did you try logging in?</p>
+                <a href="/index/#signup-submit">{{linkName}}</a>
+                </div>
+            </div>
     </body>
 </html>

@@ -5,7 +5,7 @@ const { jwtsecret } = require('../config.js');
 //verify user is logged in
 const auth = async (req, res, next) => {
   
-        console.log(req)
+        
         try {
             // retrieve user authorization from HTTPonly cookie with token
             const token = req.cookies.Authorization.replace('Bearer ', '')

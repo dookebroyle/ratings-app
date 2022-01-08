@@ -9,21 +9,24 @@
          <link rel="shortcut icon" type="image/jpg" href="/img/book.png"/>
     </head>
     <body>
-        {{>header}}
-        <ul class="results" id={{book-rank}}>
-            {{#each bookData as |book|}}
-                <li><strong>Book Title: {{book.title}}</strong></li>
-                <input type="button" class="review-link" value ="Rate this book">
-                <li>Rank: {{book.rank}}</li>
-                <li>Author(s): {{book.author}}</li>
-                <li>Publisher(s):{{book.publisher}}</li><br>
-                <img src={{book.image}}></img>
-                <br>
-                <br>
-                <br>
-                <br>
-            {{/each}}
-        </ul>
+        <div id="background-container">
+            {{>header}}
+            <ul  class="results" id={{book-rank}}>
+                {{#each bookData as |book|}}
+                    <article class="book-article blur-container">
+                        <ul class="book-description">
+                            <li class="book-title">{{book.title}}</strong></li>
+                            <input type="button" class="review-link" value ="Rate this book">
+                            <li>Rank: {{book.rank}}</li>
+                            <li>Author(s): {{book.author}}</li>
+                            <li>Publisher(s):{{book.publisher}}</li><br>
+                        </ul>
+                        <img class="book-image" src={{book.image}}></img>
+                    </article>
+                {{/each}}
+            </ul>
+        </div>
+        <div id="placeholdersoyoucanscroll"></div>
         <script src="/js/currentbest.js" async defer></script>
     </body>
 </html>
