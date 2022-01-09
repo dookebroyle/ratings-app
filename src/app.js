@@ -8,6 +8,8 @@ const User = require('./models/user')
 const userRouter = require('./routers/user')
 const ratingRouter = require('./routers/rating')
 const bookRouter = require('./routers/books')
+const port = process.env.PORT
+require('dotenv').config()
 //const { port, mongodburl } = require('./config');
 require('./db/mongoose')
 

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 //const { mongodburl } = require('../config.js');
+require('dotenv').config()
 
 
 //connect to database
