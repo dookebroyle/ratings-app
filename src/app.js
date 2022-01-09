@@ -8,7 +8,7 @@ const User = require('./models/user')
 const userRouter = require('./routers/user')
 const ratingRouter = require('./routers/rating')
 const bookRouter = require('./routers/books')
-const { port, mongodburl } = require('./config');
+//const { port, mongodburl } = require('./config');
 require('./db/mongoose')
 
 
@@ -96,8 +96,8 @@ app.get('*', function(req, res){
   })
 
 
-app.listen(port, () => {
-    console.log(`App is up on port ${port}`)
+app.listen(process.env.PORT, () => {
+    console.log(`App is up on port ${process.env.PORT}`)
 })
 
 
