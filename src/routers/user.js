@@ -29,7 +29,7 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
         })
     } catch (e)  {
         res.status(400).render('400', {
-            message: e
+            message: e,
             linkName: 'Sign In',
             user
         })
