@@ -1,6 +1,7 @@
 const reviewLink = document.querySelectorAll('.review-link')
 const bookItems = document.querySelectorAll('.results')
 const booksContainer = document.querySelector('#book-container')
+const domain = 'https://doyle-book-ratings-app.herokuapp.com'
 
 // Send book data to rating page
 reviewLink.forEach( (link) => {
@@ -12,12 +13,12 @@ reviewLink.forEach( (link) => {
         const bookTitle = previousElem.replace(/\s/g, "-")
         
 
-    fetch(`http://localhost:3000/ratings?bookid=${bookId}&booktitle=${bookTitle}`).then((response) => {
+    fetch(`${domain}/ratings?bookid=${bookId}&booktitle=${bookTitle}`).then((response) => {
         if (response.error){
             console.log(response.error)
         } else {
             
-            window.location.replace(`http://localhost:3000/rating?bookid=${bookId}&booktitle=${bookTitle}`)
+            window.location.replace(`${domain}/rating?bookid=${bookId}&booktitle=${bookTitle}`)
         }
         })
     })

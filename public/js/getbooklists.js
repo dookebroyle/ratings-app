@@ -1,5 +1,6 @@
 const submit = document.querySelector('#booklist-form')
 const selectBox = document.querySelector('#select-box')
+const domain = 'https://doyle-book-ratings-app.herokuapp.com'
 
 
 //update the select list element on change
@@ -13,11 +14,11 @@ submit.addEventListener('submit', (e) => {
     let selectedList = document.querySelector('#select-box option:checked').value
     
     listName = selectedList.replace(/\s/g, '-');
-    fetch(`http://localhost:3000/fetchbooks?booklistName=${listName}`).then((response) => {
+    fetch(`${domain}/fetchbooks?booklistName=${listName}`).then((response) => {
         if (response.error){
             console.log(response.error)
         }})
-        window.location.replace(`http://localhost:3000/fetchbooks?booklistName=${listName}`)
+        window.location.replace(`${domain}/fetchbooks?booklistName=${listName}`)
         selectedList = "";
         listName = "";
     })

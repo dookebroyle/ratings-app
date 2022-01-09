@@ -1,5 +1,6 @@
 const updateForms = document.querySelectorAll('.update-form')
 const successText = document.querySelector('#success-text')
+const domain = 'https://doyle-book-ratings-app.herokuapp.com'
 
 //listen for post click on Review Update form and fire off ratings/postupdate
 updateForms.forEach( (form) => {
@@ -9,7 +10,7 @@ updateForms.forEach( (form) => {
         let stars = document.querySelector('input[name="rate"]:checked').value;
         let input = document.querySelector('#review-input').value
 
-        fetch(`http://localhost:3000/ratings/postupdate`, {
+        fetch(`${domain}/ratings/postupdate`, {
             method: "PATCH",
             headers: {
                 "content-type" : "application/json",
