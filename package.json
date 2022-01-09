@@ -1,7 +1,10 @@
 {
   "name": "web-server",
   "version": "1.0.0",
-  "description": "",
+  "engines": {
+    "node": "14.x"
+  },
+  "description": "allows users to create ratings of books",
   "main": "index.js",
   "scripts": {
     "start": "node src/app.js",

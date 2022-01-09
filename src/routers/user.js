@@ -29,8 +29,7 @@ router.post('/users/signup', urlencodedParser, async (req, res) => {
         })
     } catch (e)  {
         res.status(400).render('400', {
-           message: e,
-           //message: 'User already exists, please sign in.',
+            message: 'Database error',
             linkName: 'Sign In',
             user
         })
